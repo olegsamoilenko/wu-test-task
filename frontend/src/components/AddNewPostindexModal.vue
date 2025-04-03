@@ -4,7 +4,7 @@ import { reactive } from 'vue'
 import Input from './Input.vue'
 import Button from './Button.vue'
 
-const props = defineProps<{ open: boolean }>()
+defineProps<{ open: boolean }>()
 
 const emit = defineEmits(['update:open'])
 

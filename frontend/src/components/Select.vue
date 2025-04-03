@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const emit = defineEmits(['update:modelValue'])
+defineEmits(['update:modelValue'])
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     id: string
     label?: string

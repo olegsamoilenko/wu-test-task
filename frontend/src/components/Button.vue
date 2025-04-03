@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits(['handleClick'])
-const props = withDefaults(
+withDefaults(
   defineProps<{
     type?: string
   }>(),
