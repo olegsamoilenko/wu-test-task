@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Postcode API
+  version: 1.0.0
+  description: API for managing Ukrainian post office indexes
+
+paths:
+  /api/postcodes:
+    get:
+      summary: Get a list of postcodes
+      parameters:
+        - in: query
+          name: postcode
+          schema:
+            type: string
+          description: Exact postcode to search
+        - in: query
+          name: address
+          schema:
+            type: string
+          description: Address or part of it to search
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Page number for pagination
+      responses:
+        '200':
+          description: List of postcodes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    post:
+      summary: Add one or more postcode records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Postcode'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/Postcode'
+      responses:
+        '200':
+          description: Insertion or update result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inserted:
+                    type: array
+                    items:
+                      type: object
+                  errors:
+                    type: array
+                    items:
+                      type: object
+
+  /api/postcodes/{code}:
+    delete:
+      summary: Delete a postcode by code
+      parameters:
+        - in: path
+          name: code
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion result
+        '400':
+          description: Error message
+
+components:
+  schemas:
+    Postcode:
+      type: object
+      required:
+        - post_office_post_code
+        - postal_code
+        - region_ua
+        - region_en
+        - district_old_ua
+        - district_new_ua
+        - district_new_en
+        - settlement_ua
+        - settlement_en
+        - post_office_ua
+        - post_office_en
+      properties:
+        post_office_post_code:
+          type: string
+        postal_code:
+          type: string
+        region_ua:
+          type: string
+        region_en:
+          type: string
+        district_old_ua:
+          type: string
+        district_new_ua:
+          type: string
+        district_new_en:
+          type: string
+        settlement_ua:
+          type: string
+        settlement_en:
+          type: string
+        post_office_ua:
+          type: string
+        post_office_en:
+          type: string
