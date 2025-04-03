@@ -30,6 +30,8 @@ defineEmits(['update:open'])
   border-radius: 8px;
   width: 600px;
   max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
 }
 .modal input {
   display: block;

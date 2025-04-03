@@ -31,12 +31,10 @@ async function handleFetchPostcodes(params: {
 }
 
 async function handleSearch(value: string) {
-  if (value.length > 2) {
-    if (selected.value === 'postcode') {
-      await handleFetchPostcodes({ postcode: value })
-    } else {
-      await handleFetchPostcodes({ address: value })
-    }
+  if (selected.value === 'postcode') {
+    await handleFetchPostcodes({ postcode: value })
+  } else {
+    await handleFetchPostcodes({ address: value })
   }
 }
 

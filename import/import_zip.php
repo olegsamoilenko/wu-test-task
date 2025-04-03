@@ -17,6 +17,11 @@ $zipPath = __DIR__ . '/../storage/postindex.zip';
 $xlsxPath = __DIR__ . '/../storage/postindex.xlsx';
 $csvPath = __DIR__ . '/../storage/postindex.csv';
 
+$storageDir = __DIR__ . '/../storage';
+if (!is_dir($storageDir)) {
+    mkdir($storageDir, 0777, true);
+}
+
 echo "Download the ZIP...\n";
 file_put_contents($zipPath, file_get_contents($zipUrl));
 
